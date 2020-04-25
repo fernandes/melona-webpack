@@ -17,6 +17,17 @@ module.exports = {
 		resolve: { alias, extensions, mainFields },
 		module: {
 			rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ["@babel/plugin-proposal-class-properties"]
+            }
+          }
+        },
 				{
 					test: /\.(svelte|html)$/,
 					use: {
@@ -50,6 +61,17 @@ module.exports = {
 		externals: Object.keys(pkg.dependencies).concat('encoding'),
 		module: {
 			rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ["@babel/plugin-proposal-class-properties"]
+            }
+          }
+        },
 				{
 					test: /\.(svelte|html)$/,
 					use: {
