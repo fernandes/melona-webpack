@@ -15,6 +15,7 @@ module.exports = {
 		entry: config.client.entry(),
 		output: config.client.output(),
 		resolve: { alias, extensions, mainFields },
+		node: { fs: 'empty' },
 		module: {
 			rules: [
         {
@@ -24,7 +25,17 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
-              plugins: ["@babel/plugin-proposal-class-properties"]
+              plugins: [
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ["@babel/plugin-proposal-class-properties", { "loose": false }],
+                [
+                  "@babel/plugin-transform-runtime",
+                  {
+                    "helpers": true,
+                    "regenerator": true
+                  }
+                ]
+              ]
             }
           }
         },
@@ -68,7 +79,17 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
-              plugins: ["@babel/plugin-proposal-class-properties"]
+              plugins: [
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ["@babel/plugin-proposal-class-properties", { "loose": false }],
+                [
+                  "@babel/plugin-transform-runtime",
+                  {
+                    "helpers": true,
+                    "regenerator": true
+                  }
+                ]
+              ]
             }
           }
         },
